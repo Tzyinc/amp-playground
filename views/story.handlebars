@@ -1,0 +1,88 @@
+{{#section 'head'}}
+<link rel="canonical" href="/story" />
+<script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+<title>Hello, amp-story</title>
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<style amp-boilerplate>
+    body {
+        -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+        -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+        -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+        animation: -amp-start 8s steps(1, end) 0s 1 normal both
+    }
+
+    @-webkit-keyframes -amp-start {
+        from {
+            visibility: hidden
+        }
+
+        to {
+            visibility: visible
+        }
+    }
+
+    @-moz-keyframes -amp-start {
+        from {
+            visibility: hidden
+        }
+
+        to {
+            visibility: visible
+        }
+    }
+
+    @-ms-keyframes -amp-start {
+        from {
+            visibility: hidden
+        }
+
+        to {
+            visibility: visible
+        }
+    }
+
+    @-o-keyframes -amp-start {
+        from {
+            visibility: hidden
+        }
+
+        to {
+            visibility: visible
+        }
+    }
+
+    @keyframes -amp-start {
+        from {
+            visibility: hidden
+        }
+
+        to {
+            visibility: visible
+        }
+    }
+</style>
+<noscript>
+    <style amp-boilerplate>
+        body {
+            -webkit-animation: none;
+            -moz-animation: none;
+            -ms-animation: none;
+            animation: none
+        }
+    </style>
+</noscript>
+{{/section}}
+
+<amp-story poster-portrait-src='/assets/images/profile.png' publisher='tenzy' publisher-logo-src='/assets/images/profile.png' title='presentation' standalone supports-landscape>
+    {{#each slides as |slide|}}
+    <amp-story-page id={{slide.title}}>
+        <amp-story-grid-layer style="background: linear-gradient(225deg,#00dcc0 0,#005af0 75%);" template="fill">
+        </amp-story-grid-layer>
+        {{#each slide.layers as |layer|}}
+        <amp-story-grid-layer template="vertical">
+            <h1>{{layer.text}}</h1>
+        </amp-story-grid-layer>
+        {{/each}}
+    </amp-story-page>
+    {{/each}}
+</amp-story>

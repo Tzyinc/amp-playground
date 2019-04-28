@@ -1,11 +1,29 @@
-const express = require('express');
+var express = require('express');
+var exphbs  = require('express-handlebars');
+ 
+var app = express();
 
-const app = express();
-const path = require('path');
-
-// viewed at http://localhost:8080
-app.get('/', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/index.html`));
+var { testemplate } = require('./temp');
+ 
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+ 
+app.get('/', function (req, res) {
+    res.render('home');
 });
 
-app.listen(8080);
+console.log(testemplate);
+
+app.get('/story', function(req, res) {
+  res.render('story', {helpers: {
+    section: function (name, options) {
+      if (!this._sections) this._sections = {};
+      this._sections[name] = options.fn(this);
+      return null;
+    }},
+    slides: testemplate.slides,
+  });
+});
+app.use('/assets', express.static('assets'))
+ 
+app.listen(3000);
