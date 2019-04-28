@@ -5,14 +5,17 @@ var app = express();
 
 var { testemplate } = require('./temp');
  
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main',
+  helpers: require('./handlebars-helpers') //only need this
+}));
 app.set('view engine', 'handlebars');
  
 app.get('/', function (req, res) {
     res.render('home');
 });
 
-console.log(testemplate);
+console.log(testemplate)
 
 app.get('/story', function(req, res) {
   res.render('story', {helpers: {
@@ -22,6 +25,7 @@ app.get('/story', function(req, res) {
       return null;
     }},
     slides: testemplate.slides,
+    template: testemplate,
   });
 });
 app.use('/assets', express.static('assets'))

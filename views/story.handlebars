@@ -1,7 +1,7 @@
 {{#section 'head'}}
 <link rel="canonical" href="/story" />
 <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
-<title>Hello, amp-story</title>
+<title>{{template.title}}</title>
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <style amp-boilerplate>
     body {
@@ -72,14 +72,19 @@
     </style>
 </noscript>
 {{/section}}
-
-<amp-story poster-portrait-src='/assets/images/profile.png' publisher='tenzy' publisher-logo-src='/assets/images/profile.png' title='presentation' standalone supports-landscape>
+<amp-story poster-portrait-src='{{template.posterPortraitSrc}}' publisher='{{template.publisher}}' publisher-logo-src='{{template.publisherLogoSrc}}' title='{{template.title}}' standalone supports-landscape>
     {{#each slides as |slide|}}
     <amp-story-page id={{slide.title}}>
-        <amp-story-grid-layer style="background: linear-gradient(225deg,#00dcc0 0,#005af0 75%);" template="fill">
-        </amp-story-grid-layer>
         {{#each slide.layers as |layer|}}
-        <amp-story-grid-layer template="vertical">
+        <amp-story-grid-layer 
+            {{#if (or layer.style ../../template.globalStyle)}}
+                style="{{../../template.globalStyle}} {{layer.style}}"
+            {{/if}}
+            {{#if layer.template}}
+                template="{{layer.template}}"
+            {{else}}
+                template="vertical"
+            {{/if}}>
             <h1>{{layer.text}}</h1>
         </amp-story-grid-layer>
         {{/each}}
