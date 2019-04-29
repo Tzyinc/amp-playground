@@ -24,7 +24,7 @@ function initData() {
                         template: "fill"
                     },
                     {
-                        content: '<h1>asdfg</h1>'
+                        content: '<h1>asdfggggg</h1>'
                     }
                 ],
             },
@@ -60,8 +60,18 @@ function fetchTest() {
     return presentations.get(1);
 }
 
+function fetch(storyTitle) {
+    return presentations.findOne(storyTitle);
+}
+
+function update(data) {
+    presentations.update(data);
+}
+
 module.exports = {
     initDbIfNotExist: initDbIfNotExist,
     initData: initData,
     fetchTest: fetchTest,
+    fetch: fetch,
+    update: update,
 };
