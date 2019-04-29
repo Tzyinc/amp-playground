@@ -1,0 +1,24 @@
+{{#section 'head'}}
+<link rel="canonical" href="/" />
+<style type="text/css" media="screen">
+    #editor {
+        height:100vh;
+        width: 50vw;
+    }
+    body{
+        display: flex;
+        flex-direction: row;
+
+    }
+</style>
+{{/section}}
+<div id="editor"></div>
+
+<script src="/ace-builds-master/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/json");
+</script>
+<iframe style="height:100vh;
+        width: 50vw;" src="/story"></iframe>
