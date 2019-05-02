@@ -4,22 +4,33 @@
 <title>{{template.title}}</title>
 
 {{/section}}
+
 <amp-story poster-portrait-src='{{template.posterPortraitSrc}}' publisher='{{template.publisher}}' publisher-logo-src='{{template.publisherLogoSrc}}' title='{{template.title}}' standalone supports-landscape>
-    {{#each pages as |page|}}
-    <amp-story-page id={{page.title}}>
-        {{#each page.layers as |layer|}}
+    {{#pages}}
+    <amp-story-page id={{title}}>
+        {{#layers}}
         <amp-story-grid-layer 
-            {{#if (or layer.style ../../template.globalStyle)}}
-                style="{{../../template.globalStyle}} {{layer.style}}"
+            {{#if (or style ../../template.globalStyle)}}
+                style="{{../../template.globalStyle}} {{style}}" 
             {{/if}}
-            {{#if layer.template}}
-                template="{{layer.template}}"
+            {{#if template}}
+                template="{{template}}" 
             {{else}}
                 template="vertical"
             {{/if}}>
-            {{{layer.content}}}
+            {{#if elements}}
+                {{#elements}}
+                    <{{tag}} 
+                    {{#if style}}
+                        style="{{style}}"
+                    {{/if}}
+                    >
+                        {{value}}
+                    </{{tag}}>
+                {{/elements}}
+            {{/if}}
         </amp-story-grid-layer>
-        {{/each}}
+        {{/layers}}
     </amp-story-page>
-    {{/each}}
+    {{/pages}}
 </amp-story>

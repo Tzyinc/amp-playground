@@ -62,6 +62,7 @@ app.get('/story', function(req, res) {
 app.get('/preview/:title', function (req, res) {
   if (req.params && req.params.title) {
     const template = lokidb.fetch(req.params.title);
+    console.log(template.pages);
     res.render('story', {
       helpers: {
         section: function (name, options) {
@@ -86,12 +87,13 @@ app.use(express.json());
 app.use(express.urlencoded()); // to support URL-encoded bodies
 
 app.post('/save', function (req, res){
-  const data = req.body;
+  const data = JSON.parse(req.body.value);
   lokidb.update(data);
+  res.send({success: true});
 })
 
 app.use('/assets', express.static('assets'))
 
-app.use('/ace-builds-master', express.static('ace-builds-master'));
+app.use('/ace-builds', express.static('node_modules/ace-builds'));
  
 app.listen(3000);

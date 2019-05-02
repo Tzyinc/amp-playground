@@ -24,7 +24,12 @@ function initData() {
                         template: "fill"
                     },
                     {
-                        content: '<h1>asdfggggg</h1>'
+                        elements: [
+                            {
+                                value: 'asdfggggg',
+                                tag: 'h1'
+                            }
+                        ]
                     }
                 ],
             },
@@ -36,7 +41,12 @@ function initData() {
                         template: "fill"
                     },
                     {
-                        content: '<h2>the d</h2>'
+                        elements: [
+                            {
+                                value: 'asdfggggg',
+                                tag: 'h1'
+                            }
+                        ]
                     }
                 ],
             },
@@ -48,7 +58,46 @@ function initData() {
                         template: "fill"
                     },
                     {
-                        content: '<h3>the end<h3>'
+                        elements: [
+                            {
+                                value: 'asdfggggg',
+                                tag: 'h1'
+                            }
+                        ]
+                    }
+                ],
+            },
+            {
+                title: '4',
+                layers: [
+                    {
+                        style: `background: linear-gradient(225deg,#00dcc0 0,#005af0 75%);`,
+                        template: "fill"
+                    },
+                    {
+                        elements: [
+                            {
+                                value: 'asdfggggg',
+                                tag: 'h1'
+                            }
+                        ]
+                    }
+                ],
+            },
+            {
+                title: '5',
+                layers: [
+                    {
+                        style: `background: linear-gradient(225deg,#00dcc0 0,#005af0 75%);`,
+                        template: "fill"
+                    },
+                    {
+                        elements: [
+                            {
+                                value: 'asdfggggg',
+                                tag: 'h1'
+                            }
+                        ]
                     }
                 ],
             }
