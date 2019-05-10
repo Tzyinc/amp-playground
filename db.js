@@ -1,11 +1,30 @@
 var loki = require('lokijs');
+const fs = require('fs');
+const path = './db.json';
 
 var db;
 var presentations;
 
-function initDbIfNotExist() {
+function initDbAlways() {
     db = new loki('db.json');
     presentations = db.addCollection('presentations');
+}
+
+function initDbIfNotExist() {
+    db = new loki('db.json');
+    try {
+        if (fs.existsSync(path)){
+            db.loadDatabase({}, function() {
+                presentations = db.getCollection('presentations');
+                console.log(presentations.data);
+                console.log('DB INITIALISED');
+            })
+        } else {
+            presentations = db.addCollection('presentations');
+        }
+    } catch {
+        presentations = db.addCollection('presentations');
+    }
 }
 
 function initData() {
@@ -77,7 +96,7 @@ function initData() {
                     {
                         elements: [
                             {
-                                value: 'asdfggggg',
+                                value: 'hello',
                                 tag: 'h1'
                             }
                         ]
@@ -105,6 +124,10 @@ function initData() {
     });
 }
 
+function saveToDisk () {
+    db.saveDatabase();
+}
+
 function fetchTest() {
     return presentations.get(1);
 }
@@ -119,8 +142,10 @@ function update(data) {
 
 module.exports = {
     initDbIfNotExist: initDbIfNotExist,
+    initDbAlways: initDbAlways,
     initData: initData,
     fetchTest: fetchTest,
     fetch: fetch,
     update: update,
+    saveToDisk: saveToDisk,
 };

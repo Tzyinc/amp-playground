@@ -26,6 +26,15 @@
         update()
     });
 
+    editor.commands.addCommand({
+        name: 'save',
+        bindKey: {"win": "Ctrl-S", "mac": "Cmd-S"},
+        exec: function(editor) {
+            toUpdate();
+            toSave();
+        }
+    })
+
     function update() {;
         debouncedUpdate();
     }
@@ -38,10 +47,18 @@
         //xhr.send(value);
         postData(`/save`, {value: value})
             .then(data => {
-                console.log(JSON.stringify(data))
                 document.getElementById('previewIframe').contentWindow.location.reload();
             }) // JSON-string from `response.json()` call
             .catch(error => console.error(error));
+    }
+
+    function toSave() {
+        postData(`/writeChanges`)
+            .then(data=> {
+                 document.getElementById('previewIframe').contentWindow.location.reload();
+            })
+            .catch(error => console.error(error));
+
     }
 
     function debounce(func, wait, immediate) {
@@ -79,4 +96,4 @@
 </script>
 
 
-<iframe id="previewIframe" style="height:100vh; width: 50vw;" src="/preview/{{title}}"></iframe>
+<iframe id="previewIframe" style="height:100vh; width: 50vw;" src="/preview/{{title}}" ></iframe>

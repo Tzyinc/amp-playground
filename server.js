@@ -9,7 +9,6 @@ var lokidb = require('./db');
 var { testemplate } = require('./temp');
 
 lokidb.initDbIfNotExist();
-lokidb.initData();
  
 app.engine('handlebars', exphbs({
   defaultLayout: 'main',
@@ -62,7 +61,6 @@ app.get('/story', function(req, res) {
 app.get('/preview/:title', function (req, res) {
   if (req.params && req.params.title) {
     const template = lokidb.fetch(req.params.title);
-    console.log(template.pages);
     res.render('story', {
       helpers: {
         section: function (name, options) {
@@ -89,6 +87,11 @@ app.use(express.urlencoded()); // to support URL-encoded bodies
 app.post('/save', function (req, res){
   const data = JSON.parse(req.body.value);
   lokidb.update(data);
+  res.send({success: true});
+})
+
+app.post('/writeChanges', function(req, res) {
+  lokidb.saveToDisk();
   res.send({success: true});
 })
 
