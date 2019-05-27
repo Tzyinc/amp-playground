@@ -2,7 +2,6 @@
 <link rel="canonical" href="/story" />
 <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
 <title>{{template.title}}</title>
-
 {{/section}}
 
 <amp-story poster-portrait-src='{{template.posterPortraitSrc}}' publisher='{{template.publisher}}' publisher-logo-src='{{template.publisherLogoSrc}}' title='{{template.title}}' standalone supports-landscape>
@@ -23,6 +22,30 @@
                     <{{tag}} 
                     {{#if style}}
                         style="{{style}}"
+                    {{/if}}
+                    {{#if src}}
+                        src="{{src}}"
+                    {{/if}}
+                    {{#if href}}
+                        href="{{href}}"
+                    {{/if}}
+                    {{#if width}}
+                        width="{{width}}"
+                    {{/if}}
+                    {{#if height}}
+                        height="{{height}}"
+                    {{/if}}
+                    {{#if layout}}
+                        layout="{{layout}}"
+                    {{/if}}
+                    {{#if grid-area}}
+                        grid-area="{{grid-area}}"
+                    {{/if}}
+                    {{#if align-self}}
+                        align-self="{{align-self}}"
+                    {{/if}}
+                    {{#if justify-self}}
+                        justify-self="{{justify-self}}"
                     {{/if}}
                     >
                         {{value}}
